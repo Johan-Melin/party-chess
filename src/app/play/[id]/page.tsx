@@ -1,10 +1,10 @@
 "use client"
+import { useParams } from "next/navigation"
 import ChessGame from "@/app/ChessGame"
 
-export default function Home() {
-  return (
-    <main className="flex min-h-screen items-center justify-center p-4">
-      <ChessGame />
-    </main>
-  )
+export default function PlayPage() {
+  const params = useParams()
+  const gameId = params.id as string
+  
+  return <ChessGame gameId={gameId} />
 }

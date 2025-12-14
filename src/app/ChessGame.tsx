@@ -1,9 +1,16 @@
 "use client"
 import { Chessboard } from 'react-chessboard';
 import { useChessGame } from './useChessGame';
+import { getChessGame } from '@/lib/chessStorage';
 
-export default function ChessGame() {
-  const { chessPosition, onPieceDrop } = useChessGame();
+interface ChessGameProps {
+  gameId: string;
+}
+
+export default function ChessGame({ gameId }: ChessGameProps) {
+  const gameData = getChessGame(gameId);
+  const initialFen = gameData?.fen;
+  const { chessPosition, onPieceDrop } = useChessGame(initialFen, gameId);
   
   const chessBoardOtions = {
     position: chessPosition,
